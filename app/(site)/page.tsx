@@ -2,7 +2,7 @@ import { CenteredTextImageCardsSection } from "@/components/sections/CenteredTex
 import { CtaSection } from "@/components/sections/CtaSection";
 import { FeaturesGridMarqueeSection } from "@/components/sections/FeaturesGridMarqueeSection";
 import { HeroSection } from "@/components/sections/HeroSection";
-import { PricingSection } from "@/components/sections/PricingSection";
+import { Pricing3Section } from "@/components/sections/Pricing3Section";
 import { ServicesMarqueeSection } from "@/components/sections/ServicesMarqueeSection";
 
 export default function Home() {
@@ -10,9 +10,9 @@ export default function Home() {
     <main className="bg-sparkles-cream">
       <HeroSection />
       <ServicesMarqueeSection />
+      <Pricing3Section />
       <FeaturesGridMarqueeSection />
       <CenteredTextImageCardsSection />
-      <PricingSection />
       <CtaSection />
     </main>
   );
