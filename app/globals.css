@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Decalotype Fix";
+  src:
+    url("/fonts/Decalotype-ExtraBold-fix.otf") format("opentype"),
+    url("/fonts/Decalotype-Bold-fix.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Decalotype Fix";
+  src: url("/fonts/Decalotype-Regular-fix.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Bricolagegrotesque;
+  src: url("/fonts/BricolageGrotesque-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Bricolagegrotesque;
+  src: url("/fonts/BricolageGrotesque-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Bricolagegrotesque;
+  src: url("/fonts/BricolageGrotesque-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fdf8f1;
+  --foreground: #0d1526;
+
+  --sparkles-cream: #fdf8f1;
+  --sparkles-navy: #0d1526;
+  --sparkles-warm: #f2ece5;
+  --sparkles-blue: #c1cb38;
+  --sparkles-accent: #2e7b34;
+  --sparkles-muted: #0d1526a3;
+  --sparkles-navy-8: #0d152614;
+  --sparkles-navy-16: #0d152629;
+  --sparkles-gold: #ffc216;
+  --sparkles-panel: #243047;
+  --puget-night: #34422e;
+
+  --font-decalotype: "Decalotype Fix", Arial, sans-serif;
+  --font-bricolage: Bricolagegrotesque, Arial, sans-serif;
+
+  --radius-sm: 1.25rem;
+  --radius-md: 1.5rem;
+  --radius-lg: 2rem;
+  --radius-pill: 100vw;
+
+  --container-max: 1800px;
+  --section-px: 2rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-sparkles-cream: var(--sparkles-cream);
+  --color-sparkles-navy: var(--sparkles-navy);
+  --color-sparkles-warm: var(--sparkles-warm);
+  --color-sparkles-blue: var(--sparkles-blue);
+  --color-sparkles-accent: var(--sparkles-accent);
+  --color-sparkles-muted: var(--sparkles-muted);
+  --color-sparkles-panel: var(--sparkles-panel);
+  --color-sparkles-gold: var(--sparkles-gold);
+  --color-puget-night: var(--puget-night);
+  --font-sans: var(--font-bricolage);
+  --font-display: var(--font-decalotype);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--sparkles-cream);
+  color: var(--sparkles-navy);
+  font-family: var(--font-bricolage);
+}
+
+.font-display {
+  font-family: var(--font-decalotype);
+}
+
+.font-body {
+  font-family: var(--font-bricolage);
 }
