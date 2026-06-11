@@ -2,14 +2,18 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CmsPageSection } from "@/components/byq/CmsPageSection";
 import { CtaSection } from "@/components/byq/CtaSection";
-import { getLeafletStory, leafletStories } from "@/data/leaflet-stories";
+import {
+  getLeafletStory,
+  getPublishedLeafletStories,
+  getRelatedLeafletStories,
+} from "@/data/leaflet-stories";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-  return leafletStories.map((story) => ({ slug: story.slug }));
+  return getPublishedLeafletStories().map((story) => ({ slug: story.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -30,13 +34,17 @@ export default async function LeafletStoryTemplatePage({ params }: PageProps) {
   const { slug } = await params;
   const story = getLeafletStory(slug);
 
-  if (!story) {
+  if (!story || story.draft) {
     notFound();
   }
 
   return (
     <main>
-      <CmsPageSection title={story.title} />
+      <CmsPageSection
+        title={story.title}
+        story={story}
+        relatedStories={getRelatedLeafletStories(slug)}
+      />
       <CtaSection />
     </main>
   );

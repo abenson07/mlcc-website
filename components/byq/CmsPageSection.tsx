@@ -1,8 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import * as React from "react";
+import {
+  formatLeafletAuthor,
+  formatLeafletDate,
+  type LeafletStory,
+} from "@/data/leaflet-stories";
 
-const relatedCards = [
+const skeletonRelatedCards = [
   {
     img: "https://byqsupply-components.netlify.app/skeletons/cms-page/images/blogcmspage7.svg",
     title: "Article skeleton title placeholder for layout demonstration only",
@@ -16,6 +22,9 @@ const relatedCards = [
     href: "/leaflet/template",
   },
 ];
+
+const skeletonHeroImage =
+  "https://byqsupply-components.netlify.app/skeletons/cms-page/images/blogcmspage7.svg";
 
 function ParallaxImage({ src, alt }: { src: string; alt: string }) {
   const ref = React.useRef<HTMLImageElement>(null);
@@ -46,8 +55,17 @@ function ParallaxImage({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-export function CmsPageSection({ title }: { title: string }) {
+export function CmsPageSection({
+  title,
+  story,
+  relatedStories,
+}: {
+  title: string;
+  story?: LeafletStory;
+  relatedStories?: LeafletStory[];
+}) {
   const [hoveredCard, setHoveredCard] = React.useState<number | null>(null);
+  const heroImage = story?.image ?? skeletonHeroImage;
 
   return (
     <div className="bg-sparkles-cream text-sparkles-navy">
@@ -59,86 +77,100 @@ export function CmsPageSection({ title }: { title: string }) {
                 <div className="flex flex-wrap items-center justify-center gap-2">
                   <div className="rounded-[2rem] border border-sparkles-muted bg-white/50 px-3 py-2">
                     <div className="font-body text-[0.625rem] leading-3 font-bold uppercase tracking-[0.0625rem] text-sparkles-navy">
-                      Label
+                      {story?.type ?? "Label"}
                     </div>
                   </div>
-                  <div className="rounded-[2rem] border border-sparkles-muted bg-white/50 px-3 py-2">
-                    <div className="font-body text-[0.625rem] leading-3 font-bold uppercase tracking-[0.0625rem] text-sparkles-navy">
-                      More Label
+                  {story ? (
+                    <div className="rounded-[2rem] border border-sparkles-muted bg-white/50 px-3 py-2">
+                      <div className="font-body text-[0.625rem] leading-3 font-bold uppercase tracking-[0.0625rem] text-sparkles-navy">
+                        {formatLeafletDate(story.publishDate)} · {formatLeafletAuthor(story.author)}
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="rounded-[2rem] border border-sparkles-muted bg-white/50 px-3 py-2">
+                      <div className="font-body text-[0.625rem] leading-3 font-bold uppercase tracking-[0.0625rem] text-sparkles-navy">
+                        More Label
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <h1 className="m-0 font-display text-[3.75rem] leading-16 font-bold tracking-[-0.15625rem] text-puget-night max-[767px]:text-[2.5rem] max-[767px]:leading-10 max-[767px]:tracking-[-0.0625rem]">
                   {title}
                 </h1>
               </div>
 
-              <div className="h-[30rem] w-full overflow-hidden rounded-2xl max-[991px]:h-[22.5rem] max-[767px]:h-[18.75rem] max-[479px]:h-[15.6rem]">
-                <ParallaxImage
-                  src="https://byqsupply-components.netlify.app/skeletons/cms-page/images/blogcmspage7.svg"
-                  alt=""
-                />
-              </div>
+              {story?.image ? (
+                <div className="h-[30rem] w-full overflow-hidden rounded-2xl max-[991px]:h-[22.5rem] max-[767px]:h-[18.75rem] max-[479px]:h-[15.6rem]">
+                  <ParallaxImage src={heroImage} alt="" />
+                </div>
+              ) : null}
             </div>
           </div>
 
           <div className="mx-auto max-w-[35.25rem] max-[991px]:w-full max-[991px]:max-w-none">
-            <div className="font-body text-base leading-6 font-normal text-sparkles-navy">
-              <p className="mb-4">
-                This is skeleton filler text, written only to keep the shape alive. It does not carry meaning, it does
-                not aim to convince, it simply marks the rhythm of where real words will eventually go. Like bones under
-                the skin, this placeholder creates a frame that can stand without flesh.
-              </p>
-              <p className="mb-4">&zwj;</p>
-              <h2 className="mb-3 mt-4 font-display text-2xl leading-7 font-bold tracking-[-0.03125rem] text-puget-night">
-                Headline skeleton placeholder
-              </h2>
-              <p className="mb-4">
-                This is skeleton filler text, written only to keep the shape alive. It does not carry meaning, it does
-                not aim to convince, it simply marks the rhythm of where real words will eventually go. Like bones under
-                the skin, this placeholder creates a frame that can stand without flesh. It stretches across the page,
-                line after line, showing flow, hierarchy, and balance.
-              </p>
-              <p className="mb-4">
-                You can read it or ignore it, because its only job is to hold the silence. Imagine this copy as
-                scaffolding: strong, temporary, replaceable. Each sentence arrives without purpose, except to suggest
-                weight and movement in the layout. The words lean forward, repeating, echoing, circling around
-                themselves. They are not here to tell a story, only to show where a story could be told.
-              </p>
-              <figure className="mb-4 w-full">
-                <img
-                  loading="lazy"
-                  src="https://byqsupply-components.netlify.app/skeletons/cms-page/images/patter-horizontal-new.svg"
-                  alt=""
-                  className="w-full rounded-xl"
-                />
-              </figure>
-              <p className="mb-4">&zwj;</p>
-              <h2 className="mb-3 mt-4 font-display text-2xl leading-7 font-bold tracking-[-0.03125rem] text-puget-night">
-                Headline skeleton placeholder
-              </h2>
-              <p className="mb-4">
-                This is skeleton filler text, written only to keep the shape alive. It does not carry meaning, it does
-                not aim to convince, it simply marks the rhythm of where real words will eventually go. Like bones under
-                the skin, this placeholder creates a frame that can stand without flesh.
-              </p>
-              <p className="mb-4">&zwj;</p>
-              <h2 className="mb-3 mt-4 font-display text-2xl leading-7 font-bold tracking-[-0.03125rem] text-puget-night">
-                Headline skeleton placeholder
-              </h2>
-              <p className="mb-4">
-                This is skeleton filler text, written only to keep the shape alive. It does not carry meaning, it does
-                not aim to convince, it simply marks the rhythm of where real words will eventually go. Like bones under
-                the skin, this placeholder creates a frame that can stand without flesh. It stretches across the page,
-                line after line, showing flow, hierarchy, and balance.
-              </p>
-              <p className="mb-4">
-                You can read it or ignore it, because its only job is to hold the silence. Imagine this copy as
-                scaffolding: strong, temporary, replaceable. Each sentence arrives without purpose, except to suggest
-                weight and movement in the layout. The words lean forward, repeating, echoing, circling around
-                themselves. They are not here to tell a story, only to show where a story could be told.
-              </p>
-            </div>
+            {story ? (
+              <div
+                className="leaflet-body font-body text-base leading-6 font-normal text-sparkles-navy"
+                dangerouslySetInnerHTML={{ __html: story.body }}
+              />
+            ) : (
+              <div className="font-body text-base leading-6 font-normal text-sparkles-navy">
+                <p className="mb-4">
+                  This is skeleton filler text, written only to keep the shape alive. It does not carry meaning, it does
+                  not aim to convince, it simply marks the rhythm of where real words will eventually go. Like bones under
+                  the skin, this placeholder creates a frame that can stand without flesh.
+                </p>
+                <p className="mb-4">&zwj;</p>
+                <h2 className="mb-3 mt-4 font-display text-2xl leading-7 font-bold tracking-[-0.03125rem] text-puget-night">
+                  Headline skeleton placeholder
+                </h2>
+                <p className="mb-4">
+                  This is skeleton filler text, written only to keep the shape alive. It does not carry meaning, it does
+                  not aim to convince, it simply marks the rhythm of where real words will eventually go. Like bones under
+                  the skin, this placeholder creates a frame that can stand without flesh. It stretches across the page,
+                  line after line, showing flow, hierarchy, and balance.
+                </p>
+                <p className="mb-4">
+                  You can read it or ignore it, because its only job is to hold the silence. Imagine this copy as
+                  scaffolding: strong, temporary, replaceable. Each sentence arrives without purpose, except to suggest
+                  weight and movement in the layout. The words lean forward, repeating, echoing, circling around
+                  themselves. They are not here to tell a story, only to show where a story could be told.
+                </p>
+                <figure className="mb-4 w-full">
+                  <img
+                    loading="lazy"
+                    src="https://byqsupply-components.netlify.app/skeletons/cms-page/images/patter-horizontal-new.svg"
+                    alt=""
+                    className="w-full rounded-xl"
+                  />
+                </figure>
+                <p className="mb-4">&zwj;</p>
+                <h2 className="mb-3 mt-4 font-display text-2xl leading-7 font-bold tracking-[-0.03125rem] text-puget-night">
+                  Headline skeleton placeholder
+                </h2>
+                <p className="mb-4">
+                  This is skeleton filler text, written only to keep the shape alive. It does not carry meaning, it does
+                  not aim to convince, it simply marks the rhythm of where real words will eventually go. Like bones under
+                  the skin, this placeholder creates a frame that can stand without flesh.
+                </p>
+                <p className="mb-4">&zwj;</p>
+                <h2 className="mb-3 mt-4 font-display text-2xl leading-7 font-bold tracking-[-0.03125rem] text-puget-night">
+                  Headline skeleton placeholder
+                </h2>
+                <p className="mb-4">
+                  This is skeleton filler text, written only to keep the shape alive. It does not carry meaning, it does
+                  not aim to convince, it simply marks the rhythm of where real words will eventually go. Like bones under
+                  the skin, this placeholder creates a frame that can stand without flesh. It stretches across the page,
+                  line after line, showing flow, hierarchy, and balance.
+                </p>
+                <p className="mb-4">
+                  You can read it or ignore it, because its only job is to hold the silence. Imagine this copy as
+                  scaffolding: strong, temporary, replaceable. Each sentence arrives without purpose, except to suggest
+                  weight and movement in the layout. The words lean forward, repeating, echoing, circling around
+                  themselves. They are not here to tell a story, only to show where a story could be told.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -152,53 +184,92 @@ export function CmsPageSection({ title }: { title: string }) {
               <div className="mb-16 flex flex-col items-start justify-start gap-4">
                 <div className="rounded-[2rem] border border-sparkles-muted bg-white/50 px-3 py-2">
                   <div className="font-body text-[0.625rem] leading-3 font-bold uppercase tracking-[0.0625rem] text-sparkles-navy">
-                    Label placeholder
+                    {relatedStories ? "Keep reading" : "Label placeholder"}
                   </div>
                 </div>
                 <h2 className="m-0 font-display text-[3rem] leading-[3.25rem] font-bold tracking-[-0.125rem] text-puget-night max-[767px]:text-[2rem] max-[767px]:leading-7 max-[767px]:tracking-[-0.031rem]">
-                  Headline skeleton placeholder
+                  {relatedStories ? "More from The Leaflet" : "Headline skeleton placeholder"}
                 </h2>
               </div>
 
               <div className="grid grid-cols-2 gap-x-3 gap-y-16 max-[479px]:grid-cols-1">
-                {relatedCards.map((card, i) => (
-                  <a
-                    key={card.img}
-                    href={card.href}
-                    className="flex w-full flex-col gap-4 text-sparkles-navy no-underline"
-                    onMouseEnter={() => setHoveredCard(i)}
-                    onMouseLeave={() => setHoveredCard(null)}
-                  >
-                    <div className="relative h-[25rem] w-full overflow-hidden rounded-2xl max-[991px]:h-[18.75rem] max-[767px]:h-[15.625rem] max-[479px]:h-[12.5rem] max-[479px]:rounded-lg">
-                      <ParallaxImage src={card.img} alt="" />
-                      <div className="absolute inset-0 z-10 flex h-full w-full items-center justify-center">
-                        <div
-                          className={`
-                            cursor-pointer rounded-[2rem] border border-sparkles-navy bg-sparkles-navy px-4 py-3
-                            font-display text-sm leading-5 font-bold text-sparkles-cream
-                            transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
-                            ${hoveredCard === i ? "border-sparkles-navy/90 bg-sparkles-navy/90" : ""}
-                          `}
-                        >
-                          Read story
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-row items-center justify-between gap-5 max-[767px]:flex-col max-[767px]:items-start max-[767px]:justify-between">
-                      <div className="font-display text-2xl leading-7 font-bold tracking-[-0.03125rem] text-puget-night">
-                        {card.title}
-                      </div>
-                      <div className="flex flex-wrap items-stretch justify-end gap-2">
-                        <div className="rounded-[2rem] border border-sparkles-muted bg-white/50 px-3 py-2">
-                          <div className="font-body text-[0.625rem] leading-3 font-bold uppercase tracking-[0.0625rem] text-sparkles-navy">
-                            {card.label}
+                {relatedStories
+                  ? relatedStories.map((card, i) => (
+                      <Link
+                        key={card.slug}
+                        href={`/leaflet/template/${card.slug}`}
+                        className="flex w-full flex-col gap-4 text-sparkles-navy no-underline"
+                        onMouseEnter={() => setHoveredCard(i)}
+                        onMouseLeave={() => setHoveredCard(null)}
+                      >
+                        <div className="relative h-[25rem] w-full overflow-hidden rounded-2xl max-[991px]:h-[18.75rem] max-[767px]:h-[15.625rem] max-[479px]:h-[12.5rem] max-[479px]:rounded-lg">
+                          <ParallaxImage src={card.image ?? skeletonHeroImage} alt="" />
+                          <div className="absolute inset-0 z-10 flex h-full w-full items-center justify-center">
+                            <div
+                              className={`
+                                cursor-pointer rounded-[2rem] border border-sparkles-navy bg-sparkles-navy px-4 py-3
+                                font-display text-sm leading-5 font-bold text-sparkles-cream
+                                transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
+                                ${hoveredCard === i ? "border-sparkles-navy/90 bg-sparkles-navy/90" : ""}
+                              `}
+                            >
+                              Read story
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  </a>
-                ))}
+
+                        <div className="flex flex-row items-center justify-between gap-5 max-[767px]:flex-col max-[767px]:items-start max-[767px]:justify-between">
+                          <div className="font-display text-2xl leading-7 font-bold tracking-[-0.03125rem] text-puget-night">
+                            {card.title}
+                          </div>
+                          <div className="flex flex-wrap items-stretch justify-end gap-2">
+                            <div className="rounded-[2rem] border border-sparkles-muted bg-white/50 px-3 py-2">
+                              <div className="font-body text-[0.625rem] leading-3 font-bold uppercase tracking-[0.0625rem] text-sparkles-navy">
+                                {card.type}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    ))
+                  : skeletonRelatedCards.map((card, i) => (
+                      <a
+                        key={card.img}
+                        href={card.href}
+                        className="flex w-full flex-col gap-4 text-sparkles-navy no-underline"
+                        onMouseEnter={() => setHoveredCard(i)}
+                        onMouseLeave={() => setHoveredCard(null)}
+                      >
+                        <div className="relative h-[25rem] w-full overflow-hidden rounded-2xl max-[991px]:h-[18.75rem] max-[767px]:h-[15.625rem] max-[479px]:h-[12.5rem] max-[479px]:rounded-lg">
+                          <ParallaxImage src={card.img} alt="" />
+                          <div className="absolute inset-0 z-10 flex h-full w-full items-center justify-center">
+                            <div
+                              className={`
+                                cursor-pointer rounded-[2rem] border border-sparkles-navy bg-sparkles-navy px-4 py-3
+                                font-display text-sm leading-5 font-bold text-sparkles-cream
+                                transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]
+                                ${hoveredCard === i ? "border-sparkles-navy/90 bg-sparkles-navy/90" : ""}
+                              `}
+                            >
+                              Read story
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex flex-row items-center justify-between gap-5 max-[767px]:flex-col max-[767px]:items-start max-[767px]:justify-between">
+                          <div className="font-display text-2xl leading-7 font-bold tracking-[-0.03125rem] text-puget-night">
+                            {card.title}
+                          </div>
+                          <div className="flex flex-wrap items-stretch justify-end gap-2">
+                            <div className="rounded-[2rem] border border-sparkles-muted bg-white/50 px-3 py-2">
+                              <div className="font-body text-[0.625rem] leading-3 font-bold uppercase tracking-[0.0625rem] text-sparkles-navy">
+                                {card.label}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    ))}
               </div>
             </div>
           </div>

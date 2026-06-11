@@ -99,3 +99,81 @@ body {
 .font-body {
   font-family: var(--font-bricolage);
 }
+
+.leaflet-body p {
+  margin-bottom: 1rem;
+}
+
+.leaflet-body h1,
+.leaflet-body h2,
+.leaflet-body h3 {
+  margin: 1.5rem 0 0.75rem;
+  font-family: var(--font-decalotype);
+  font-weight: 700;
+  color: var(--puget-night);
+}
+
+.leaflet-body h1 {
+  font-size: 2rem;
+  line-height: 2.25rem;
+}
+
+.leaflet-body h2 {
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+}
+
+.leaflet-body a {
+  color: var(--sparkles-accent);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.leaflet-body a:hover {
+  color: var(--sparkles-navy);
+}
+
+.leaflet-body strong {
+  font-weight: 700;
+}
+
+.leaflet-body ul {
+  margin: 0 0 1rem 1.25rem;
+  list-style: disc;
+}
+
+.leaflet-body li {
+  margin-bottom: 0.5rem;
+}
+
+.leaflet-body figure {
+  margin: 1.5rem 0;
+}
+
+.leaflet-body figure img {
+  width: 100%;
+  border-radius: 0.75rem;
+}
+
+.leaflet-body figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--sparkles-muted);
+  text-align: center;
+}
+
+.leaflet-body .w-button,
+.leaflet-body .button {
+  display: inline-block;
+  margin-top: 0.5rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--sparkles-navy);
+  background: var(--sparkles-navy);
+  padding: 0.75rem 1rem;
+  font-family: var(--font-decalotype);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  color: var(--sparkles-cream);
+  text-decoration: none;
+}
