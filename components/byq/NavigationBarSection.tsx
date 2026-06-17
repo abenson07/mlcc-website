@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { RotatingBanner } from "@/components/byq/RotatingBanner";
 
 const menuSections = [
   {
@@ -87,21 +88,7 @@ export function NavigationBarSection() {
   return (
     <>
       <div className="fixed left-0 right-0 top-0 z-[999] bg-sparkles-cream">
-        <div className="w-full relative p-1">
-          <div className="flex items-center justify-center gap-2 px-2 py-2 rounded-2xl bg-sparkles-navy text-sparkles-cream text-center backdrop-blur-xl">
-            <div className="font-body text-[0.625rem] leading-3 font-bold uppercase tracking-[0.0625rem]">
-              Now Live: our brand-new template Explore
-            </div>
-            <a
-              href="https://webflow.com/templates/designers/byq-studio"
-              target="_blank"
-              rel="noreferrer"
-              className="font-body text-[0.625rem] leading-3 font-bold uppercase tracking-[0.0625rem] no-underline text-sparkles-cream/90"
-            >
-              Check It Out
-            </a>
-          </div>
-        </div>
+        <RotatingBanner />
 
         <div className="px-8 max-[767px]:px-4">
           <div className="w-full max-w-[1800px] mx-auto">
