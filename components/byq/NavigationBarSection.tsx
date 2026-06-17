@@ -136,7 +136,7 @@ export function NavigationBarSection() {
                     <a
                       key={item.label}
                       href={item.href}
-                      className="relative z-[2] p-0 font-body text-xs font-semibold no-underline text-sparkles-muted transition-colors duration-200 hover:text-sparkles-navy"
+                      className="relative z-[2] p-0 font-display text-[0.875rem] leading-4 font-bold uppercase no-underline text-sparkles-navy transition-colors duration-200 hover:text-sparkles-navy/90"
                     >
                       {item.label}
                     </a>
@@ -158,9 +158,7 @@ export function NavigationBarSection() {
                     Volunteer
                   </a>
                   <a
-                    href="https://webflow.com/templates/designers/byq-studio"
-                    target="_blank"
-                    rel="noreferrer"
+                    href="/membership"
                     className="
                       inline-flex items-center justify-center px-3 py-2
                       border border-sparkles-navy rounded-[2rem] bg-sparkles-navy

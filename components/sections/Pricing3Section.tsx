@@ -164,8 +164,8 @@ const monthlyCards: PricingCardProps[] = [
     icon: <BuildingIcon />,
     title: "Business",
     description: "Show your business supports the neighborhood.",
-    price: "Custom",
-    buttonText: "Get in touch",
+    price: "$200/yr",
+    buttonText: "Join now",
     href: "/membership/business",
     isHighlighted: true,
     features: ["Business listing", "Event sponsorship", "Newsletter recognition", "Community partnership"],
@@ -201,8 +201,8 @@ const annualCards: PricingCardProps[] = [
     icon: <BuildingIcon />,
     title: "Business",
     description: "Show your business supports the neighborhood.",
-    price: "Custom",
-    buttonText: "Get in touch",
+    price: "$200/yr",
+    buttonText: "Join now",
     href: "/membership/business",
     isHighlighted: true,
     features: ["Business listing", "Event sponsorship", "Newsletter recognition", "Community partnership"],
@@ -219,12 +219,12 @@ const logos = [
   { src: "https://byqsupply-components.netlify.app/skeletons/pricing/images/logo-1.svg", alt: "Terra-tory" },
 ];
 
-export function Pricing3Section() {
+export function Pricing3Section({ compactTop = false }: { compactTop?: boolean }) {
   const [activeTab, setActiveTab] = React.useState(0);
   const cards = activeTab === 0 ? monthlyCards : annualCards;
 
   return (
-    <div className="bg-sparkles-cream">
+    <div id="pricing" className="bg-sparkles-cream">
       <style>{`
         @keyframes marquee-pricing-partners {
           from { transform: translateX(0); }
@@ -238,7 +238,7 @@ export function Pricing3Section() {
         }
       `}</style>
 
-      <section className="bg-sparkles-cream pt-[7.5rem] pb-0 max-[767px]:pt-20">
+      <section className={`bg-sparkles-cream pb-0 ${compactTop ? "pt-20 max-[767px]:pt-16" : "pt-[7.5rem] max-[767px]:pt-20"}`}>
         <div className="px-8 max-[767px]:px-4">
           <div className="mx-auto w-full max-w-[1800px]">
             <div className="mx-auto mb-8 flex max-w-[640px] flex-col items-center gap-4 text-center">

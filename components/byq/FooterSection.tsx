@@ -1,11 +1,39 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
+import { COMMITTEE_CONTENT, COMMITTEE_LISTINGS } from "@/data/committees";
 
 const linkColumns = [
-  ["Page 1", "Page 2", "Page 3", "Page 4", "Page 5"],
-  ["Page 1", "Page 2", "Page 3", "Page 4", "Page 5"],
-  ["Page 1", "Page 2", "Page 3", "Page 4", "Page 5"],
+  {
+    label: "Committees",
+    links: COMMITTEE_LISTINGS.map((committee) => ({
+      name: COMMITTEE_CONTENT[committee.slug].title,
+      href: `/committees/${committee.slug}`,
+    })),
+  },
+  {
+    label: "Community",
+    links: [
+      { name: "Events", href: "/events" },
+      { name: "Leaflet", href: "/leaflet" },
+      { name: "About", href: "/about" },
+      { name: "Board", href: "/board" },
+      { name: "Meeting Minutes", href: "/meeting-minutes" },
+      { name: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    label: "Get Involved",
+    links: [
+      { name: "Volunteer", href: "/volunteer" },
+      { name: "Join the Board", href: "/join-the-board" },
+      { name: "Submit a Story", href: "/submit-story" },
+      { name: "Submit an Event", href: "/submit-event" },
+      { name: "Support", href: "/membership" },
+      { name: "Business Membership", href: "/membership/business" },
+    ],
+  },
 ];
 
 export function FooterSection() {
@@ -16,7 +44,7 @@ export function FooterSection() {
       <div className="px-8 max-[767px]:px-4">
         <div className="z-[2] w-full max-w-[1800px] mx-auto">
           <div className="py-[7.5rem] max-[767px]:py-20">
-            <div className="grid grid-cols-2 max-[991px]:grid-cols-1 gap-4 max-[991px]:gap-16">
+            <div className="flex justify-between gap-4 max-[991px]:flex-col max-[991px]:gap-16">
               <div className="flex flex-col gap-12 justify-start items-start max-[991px]:gap-10">
                 <a href="/" className="h-12 block">
                   <img
@@ -81,21 +109,21 @@ export function FooterSection() {
                 </div>
               </div>
 
-              <div className="flex max-[991px]:mr-0 mr-16 gap-[7.5rem] max-[767px]:flex-wrap max-[767px]:gap-x-16 max-[767px]:gap-y-12">
-                {linkColumns.map((pages, columnIndex) => (
-                  <div key={columnIndex} className="flex flex-col gap-8 shrink-0">
+              <div className="flex gap-16 max-[767px]:flex-wrap max-[767px]:gap-y-12">
+                {linkColumns.map((column) => (
+                  <div key={column.label} className="flex w-fit flex-col gap-8 shrink-0">
                     <div className="font-body text-xs leading-4 font-bold uppercase tracking-[0.0625rem] text-sparkles-muted">
-                      Links
+                      {column.label}
                     </div>
                     <div className="flex flex-col gap-3">
-                      {pages.map((page) => (
-                        <a
-                          key={`${columnIndex}-${page}`}
-                          href="/template/style-guide"
-                          className="font-body text-xl leading-7 font-normal text-sparkles-navy no-underline"
+                      {column.links.map((link) => (
+                        <Link
+                          key={link.href}
+                          href={link.href}
+                          className="font-body text-sm leading-5 font-normal text-sparkles-navy no-underline"
                         >
-                          {page}
-                        </a>
+                          {link.name}
+                        </Link>
                       ))}
                     </div>
                   </div>
